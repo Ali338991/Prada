@@ -1,11 +1,28 @@
-"use client"
 import React from "react";
-import {Navbar, NavbarBrand, NavbarContent, NavbarItem, NavbarMenuToggle, NavbarMenu, NavbarMenuItem, Link, Button} from "@nextui-org/react";
+import {
+  Navbar,
+  NavbarBrand,
+  NavbarContent,
+  NavbarItem,
+  Link,
+  Input,
+  DropdownItem,
+  DropdownTrigger,
+  Dropdown,
+  DropdownMenu,
+  Avatar,
+  NavbarMenuToggle,
+  NavbarMenu,
+  NavbarMenuItem,
+} from "@nextui-org/react";
 import Logo from "./Logo";
+import { IoIosSearch } from "react-icons/io";
+import Image from "next/image";
+import { HiOutlineShoppingCart } from "react-icons/hi";
+import { FaRegUserCircle } from "react-icons/fa";
+import { RxHamburgerMenu } from "react-icons/rx";
 
-export default function Navbar1() {
-  const [isMenuOpen, setIsMenuOpen] = React?.useState(false);
-
+export default function App() {
   const menuItems = [
     "Profile",
     "Dashboard",
@@ -18,54 +35,76 @@ export default function Navbar1() {
     "Help & Feedback",
     "Log Out",
   ];
-
   return (
-    <Navbar onMenuOpenChange={setIsMenuOpen}>
-      <NavbarContent>
-        <NavbarMenuToggle
-          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          className="sm:hidden"
-        />
+    <Navbar maxWidth="full" isBordered>
+      <NavbarContent className="sm:hidden">
+        <NavbarMenuToggle icon={<RxHamburgerMenu color="black" size={25} />} />
+      </NavbarContent>
+      <NavbarContent className="sm:hidden" justify="start">
         <NavbarBrand>
-      <Logo/>
+          <Logo />
         </NavbarBrand>
       </NavbarContent>
 
-      <NavbarContent className="hidden sm:flex gap-4" justify="center">
-        <NavbarItem>
-          <Link color="foreground" href="#">
-            Features
-          </Link>
-        </NavbarItem>
-        <NavbarItem isActive>
-          <Link href="#" aria-current="page">
-            Customers
-          </Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Link color="foreground" href="#">
-            Integrations
-          </Link>
-        </NavbarItem>
+      <NavbarContent className="hidden md:flex" justify="start">
+        <NavbarBrand className="mr-4">
+          <Logo />
+        </NavbarBrand>
+        <NavbarContent className="hidden sm:flex gap-5">
+          <NavbarItem className=" flex gap-1 ">
+            <Link color="foreground" href="#">
+              Shop
+            </Link>
+            <Image src="/Frame.png" width={10} height={10} alt="pic"></Image>
+          </NavbarItem>
+          <NavbarItem isActive>
+            <Link href="#" aria-current="page" color="secondary">
+              On Sale
+            </Link>
+          </NavbarItem>
+          <NavbarItem>
+            <Link color="foreground" href="#">
+              New Arrival
+            </Link>
+          </NavbarItem>
+          <NavbarItem>
+            <Link color="foreground" href="#">
+              Brands
+            </Link>
+          </NavbarItem>
+        </NavbarContent>
       </NavbarContent>
-      <NavbarContent justify="end">
-        <NavbarItem className="hidden lg:flex">
-          <Link href="#">Login</Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Button as={Link} color="primary" href="#" variant="flat">
-            Sign Up
-          </Button>
-        </NavbarItem>
+
+      <NavbarContent as="div" className="items-center" justify="end">
+        <Input
+          classNames={{
+            base: "hidden md:flex h-10  w-[577px]",
+            mainWrapper: "h-full",
+            input: "text-small bg-primaryColor",
+            inputWrapper:
+              "h-full  font-normal bg-primaryColor text-default-500 ",
+          }}
+          placeholder="Type to search..."
+          size="sm"
+          startContent={<IoIosSearch className=" text-textColor" />}
+          type="search"
+        />
+        <HiOutlineShoppingCart className=" w-[40px]  h-6" />
+        <FaRegUserCircle className="w-8 h-6" />
       </NavbarContent>
-      <NavbarMenu>
+
+      <NavbarMenu className=" bg-primaryColor pt-10">
         {menuItems.map((item, index) => (
           <NavbarMenuItem key={`${item}-${index}`}>
             <Link
-              color={
-                index === 2 ? "primary" : index === menuItems.length - 1 ? "danger" : "foreground"
-              }
               className="w-full"
+              color={
+                index === 2
+                  ? "warning"
+                  : index === menuItems.length - 1
+                  ? "danger"
+                  : "foreground"
+              }
               href="#"
               size="lg"
             >
