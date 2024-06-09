@@ -7,6 +7,7 @@ import Text from "./components/Text";
 import Products from "./components/Products";
 import TopSeller from "./components/TopSeller";
 import Cards from "./components/Card";
+import Footer from "./components/Footer";
 export default function Home() {
   return (
     <div>
@@ -18,6 +19,7 @@ export default function Home() {
       <Products/>
       <TopSeller/>
       <Cards/>
+      <Footer/>
     </div>
   );
 }
